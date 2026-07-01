@@ -1,0 +1,130 @@
+:root {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --text-color: #f8fafc;
+    --text-muted: #94a3b8;
+    --green-positive: #22c55e;
+    --red-negative: #ef4444;
+    --border-color: #334155;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header p {
+    color: var(--text-muted);
+}
+
+/* Filtros y Buscador */
+.filters-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+input, select {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+}
+
+input {
+    flex-grow: 1;
+}
+
+.counter {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Grid Responsivo: 1 col móvil, 2 col tablet, 3-4 col escritorio */
+.crypto-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 20px;
+}
+
+@media (min-width: 640px) {
+    .crypto-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1024px) {
+    .crypto-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* Tarjetas */
+.crypto-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.crypto-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.card-header img {
+    width: 36px;
+    height: 36px;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.card-header span {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+/* Clases condicionales de rendimiento */
+.positive {
+    color: var(--green-positive);
+    font-weight: 600;
+}
+
+.negative {
+    color: var(--red-negative);
+    font-weight: 600;
+}
+
+.market-cap {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}

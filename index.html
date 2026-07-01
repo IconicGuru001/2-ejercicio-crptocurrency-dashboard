@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rey Coin Rey</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>🪙 Crypto Dashboard</h1>
+        <p>20 criptomonedas en tiempo real</p>
+    </header>
+
+    <main>
+        <!-- Sección de Filtros -->
+        <section class="filters-container">
+            <select id="performance-filter">
+                <option value="all">Todas</option>
+                <option value="positive">Solo en verde (suben)</option>
+                <option value="negative">Solo en rojo (bajan)</option>
+            </select>
+            
+            <input type="text" id="search-input" placeholder="Buscar moneda por nombre o símbolo...">
+            
+            <span id="results-counter" class="counter">Resultados: 0</span>
+        </section>
+
+        <!-- Contenedor Dinámico para las Tarjetas -->
+        <section id="crypto-container" class="crypto-grid"></section>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
