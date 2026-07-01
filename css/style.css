@@ -25,6 +25,7 @@ header p {
     color: var(--text-muted);
 }
 
+/* Filters and Search Engine */
 /* Filtros y Buscador */
 .filters-container {
     display: flex;
@@ -53,6 +54,7 @@ input {
     font-weight: 500;
 }
 
+/* Responsive Grid: 1 column mobile, 2 columns tablet, 3-4 columns desktop */
 /* Grid Responsivo: 1 col móvil, 2 col tablet, 3-4 col escritorio */
 .crypto-grid {
     display: grid;
@@ -68,6 +70,7 @@ input {
     .crypto-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 
+/* Cards */
 /* Tarjetas */
 .crypto-card {
     background-color: var(--card-bg);
@@ -113,6 +116,7 @@ input {
     margin: 5px 0;
 }
 
+/* Conditional performance classes */
 /* Clases condicionales de rendimiento */
 .positive {
     color: var(--green-positive);

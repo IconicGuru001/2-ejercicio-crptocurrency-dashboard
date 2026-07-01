@@ -1,3 +1,4 @@
+// 1. Data array provided by the exercise
 // 1. Array de datos proporcionado por el ejercicio
 const cryptoData = [
     { id: "bitcoin", name: "Bitcoin", symbol: "BTC", price_usd: 67234.50, market_cap_usd: 1320000000000, percent_change_24h: 2.34, image: "https://assets.coingecko.com/coins/images/1/standard/bitcoin.png?1696501400" },
@@ -22,12 +23,14 @@ const cryptoData = [
     { id: "algorand", name: "Algorand", symbol: "ALGO", price_usd: 0.18, market_cap_usd: 1500000000, percent_change_24h: 0.78, image: "https://assets.coingecko.com/coins/images/4380/standard/download.png?1696504978" }
 ];
 
+// 2. DOM Elements
 // 2. Elementos del DOM
 const cryptoContainer = document.getElementById('crypto-container');
 const performanceFilter = document.getElementById('performance-filter');
 const searchInput = document.getElementById('search-input');
 const resultsCounter = document.getElementById('results-counter');
 
+// 3. Formatting functions (Instructions provided in the PDF)
 // 3. Funciones de formateo (Pistas proporcionadas en el PDF)
 function formatPrice(price) {
     if (price >= 1) {
@@ -50,10 +53,11 @@ function formatMarketCap(marketCap) {
     return '$' + marketCap.toFixed(2);
 }
 
+// 4. Render cards in the DOM
 // 4. Renderizar tarjetas en el DOM
 function renderDashboard(data) {
-    cryptoContainer.innerHTML = ''; // Limpiar pantalla
-    resultsCounter.textContent = `Resultados: ${data.length}`; // Contador avanzado
+    cryptoContainer.innerHTML = ''; // Limpiar pantalla - Clear screen
+    resultsCounter.textContent = `Resultados: ${data.length}`; // Contador avanzado - Advanced counter
 
     data.forEach(coin => {
         const isPositive = coin.percent_change_24h >= 0;
@@ -81,16 +85,19 @@ function renderDashboard(data) {
     });
 }
 
+// 5. Combined logic of real-time filtering and search
 // 5. Lógica combinada de Filtro y Búsqueda en tiempo real
 function filterData() {
     const searchText = searchInput.value.toLowerCase();
     const performanceValue = performanceFilter.value;
 
     const filtered = cryptoData.filter(coin => {
+        // Search engine validation (by name or symbol)
         // Validación del buscador (por nombre o símbolo)
         const matchesSearch = coin.name.toLowerCase().includes(searchText) || 
                               coin.symbol.toLowerCase().includes(searchText);
         
+         // Performance selector validation                     
         // Validación del selector de rendimiento
         let matchesPerformance = true;
         if (performanceValue === 'positive') matchesPerformance = coin.percent_change_24h >= 0;
@@ -102,20 +109,24 @@ function filterData() {
     renderDashboard(filtered);
 }
 
+// 6. Listeners to detect user changes
 // 6. Listeners para detectar cambios del usuario
 searchInput.addEventListener('input', filterData);
 performanceFilter.addEventListener('change', filterData);
 
+// 7. ADVANCED EXTRA: Simulate ticks in real time (Modifies prices every 3 seconds)
 // 7. EXTRA AVANZADO: Simular ticks en tiempo real (Modifica precios cada 3 segundos)
 setInterval(() => {
     cryptoData.forEach(coin => {
+
+        // Generates a random percentage variation between -1.5% and +1.5%
         // Genera una variación porcentual aleatoria entre -1.5% y +1.5%
         const variation = (Math.random() * 3 - 1.5) / 100;
         coin.price_usd += coin.price_usd * variation;
         coin.percent_change_24h += variation * 100;
     });
-    filterData(); // Re-filtra y actualiza la UI con los nuevos precios
+    filterData(); // Re-filtra y actualiza la UI con los nuevos precios - Re-filter and update the UI with the new prices
 }, 3000);
 
-// Ejecución inicial al cargar la página
+// Ejecución inicial al cargar la página - Initial execution when the page loads
 renderDashboard(cryptoData);
